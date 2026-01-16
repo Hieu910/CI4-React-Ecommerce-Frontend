@@ -37,7 +37,7 @@ export const getFeaturedProducts = async <T = any>(): Promise<T> => {
 export const getProductVariants = async <T = any>(
   productId: number
 ): Promise<T> => {
-  return (await apiClient.get(`admin/products/variants/${productId}`)) as T;
+  return (await apiClient.get(`/admin/products/variants/${productId}`)) as T;
 };
 
 export const getRelatedProducts = async <T = any>(
@@ -52,20 +52,20 @@ export const getRelatedProducts = async <T = any>(
 export const createProduct = async <T = any>(
   productData: FormData
 ): Promise<T> => {
-  return (await apiClient.post("admin/products/create", productData)) as T;
+  return (await apiClient.post("/admin/products/create", productData)) as T;
 };
 
 export const updateProduct = async <T = any>(
   id: number,
   productData: FormData
 ): Promise<T> => {
-  return (await apiClient.post(`admin/products/update/${id}`, productData, {
+  return (await apiClient.post(`/admin/products/update/${id}`, productData, {
     headers: { "Content-Type": "multipart/form-data" },
   })) as T;
 };
 
 export const deleteProduct = async <T = any>(id: number): Promise<T> => {
-  return (await apiClient.post(`admin/products/delete/${id}`)) as T;
+  return (await apiClient.post(`/admin/products/delete/${id}`)) as T;
 };
 
 export const getCategories = async <T = any>(): Promise<T> => {
@@ -134,18 +134,18 @@ export const deleteCartItem = async (cartId: number): Promise<any> => {
 };
 
 export const getUserOrders = async <T = any>(): Promise<T> => {
-  return (await apiClient.get("user/orders")) as T;
+  return (await apiClient.get("/user/orders")) as T;
 };
 export const getUserOrderById = async <T = any>(id: number): Promise<T> => {
-  return (await apiClient.get(`user/orders/${id}`)) as T;
+  return (await apiClient.get(`/user/orders/${id}`)) as T;
 };
 
 export const getAdminOrders = async <T = any>(): Promise<T> => {
-  return (await apiClient.get("admin/orders")) as T;
+  return (await apiClient.get("/admin/orders")) as T;
 };
 
 export const getAdminOrderById = async <T = any>(id: number): Promise<T> => {
-  return (await apiClient.get(`admin/orders/${id}`)) as T;
+  return (await apiClient.get(`/admin/orders/${id}`)) as T;
 };
 
 export const createOrder = async <T = any>(): Promise<T> => {
@@ -156,13 +156,13 @@ export const updateOrderStatus = async <T = any>(
   id: number,
   status: number
 ): Promise<T> => {
-  return (await apiClient.post(`admin/orders/update-status/${id}`, {
+  return (await apiClient.post(`/admin/orders/update-status/${id}`, {
     status,
   })) as T;
 };
 
 export const getAdminUsers = async <T = any>(): Promise<T> => {
-  return (await apiClient.get("admin/users")) as T;
+  return (await apiClient.get("/admin/users")) as T;
 };
 
 export const getUsers = async <T = any>(): Promise<T> => {
@@ -177,11 +177,11 @@ export const updateUserRole = async <T = any>(
   id: number,
   role: number
 ): Promise<T> => {
-  return (await apiClient.post(`admin/users/update/${id}`, { role })) as T;
+  return (await apiClient.post(`/admin/users/update/${id}`, { role })) as T;
 };
 
 export const getDashboardStats = async <T = any>(): Promise<T> => {
-  return (await apiClient.get("admin/dashboard")) as T;
+  return (await apiClient.get("/admin/dashboard")) as T;
 };
 
 export const getRevenueChart = async <T = any>(): Promise<T> => {
