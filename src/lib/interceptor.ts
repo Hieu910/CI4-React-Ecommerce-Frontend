@@ -6,11 +6,8 @@ import { login, logout } from "@/store/authSlice";
 const API_URL = import.meta.env.VITE_API_URL;
 const apiClient = axios.create({
   baseURL: API_URL,
-  timeout: 30000,
+  timeout: 10000,
   withCredentials: true,
-  headers: {
-    "ngrok-skip-browser-warning": "69420",
-  },
 });
 
 let isRefreshing = false;
@@ -71,7 +68,7 @@ apiClient.interceptors.response.use(
     const errorMessage =
       error.response?.data?.data?.message || error.message || "Error occurred";
     return Promise.reject(new Error(errorMessage));
-  }
+  },
 );
 
 async function refreshAccessToken(): Promise<string> {
@@ -95,7 +92,7 @@ async function performRefresh(): Promise<string> {
   const response = await axios.post(
     "http://localhost:8080/api/refresh",
     {},
-    { withCredentials: true }
+    { withCredentials: true },
   );
 
   const { code, data } = response.data;
@@ -111,7 +108,7 @@ async function performRefresh(): Promise<string> {
     login({
       user: currentUser || data.user,
       access_token: newToken,
-    })
+    }),
   );
   localStorage.setItem("auth_token", newToken);
 
