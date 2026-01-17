@@ -7,7 +7,6 @@ import { useAppSelector, useAppDispatch } from "@/hooks/useAppDispatch";
 import { clearCompare } from "@/store/compareSlice";
 import { Product, Variant } from "@/data/mockData";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
 import { getProductById } from "@/services/api";
 
 interface ProductDetail extends Product {

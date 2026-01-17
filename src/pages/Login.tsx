@@ -34,9 +34,6 @@ const Login = () => {
       setIsLoading(true);
       const authData = await loginUser(email, password);
       dispatch(login(authData));
-     
-
-      toast.success("Login successful!");
 
       if (authData.user.role === 1) {
         navigate("/admin", { replace: true });

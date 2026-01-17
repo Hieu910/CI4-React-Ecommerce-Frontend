@@ -129,20 +129,20 @@ export interface ProductListParams {
   sort_order?: string;
 }
 
-export interface CartItemResponse {
+export interface CartItem {
   cart_id: number;
+  product_id?: number;
+  variant_id: number;
   quantity: number;
   name: string;
   image_url: string;
-  variant_id: number;
   size: string;
   color: string;
   price: number;
-  product_id?: number;
 }
 
 export interface CartResponse {
-  items: CartItemResponse[];
+  items: CartItem[];
   total_amount: number;
 }
 

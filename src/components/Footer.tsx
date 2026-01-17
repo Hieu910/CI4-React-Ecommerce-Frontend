@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="bg-card mt-12 py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
+
           <div>
             <h3 className="text-xl font-bold text-foreground mb-4">STYLISH</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
@@ -16,7 +16,6 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h4 className="font-medium text-foreground mb-4">Quick Links</h4>
             <ul className="space-y-2">
@@ -37,7 +36,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Categories */}
+
           <div>
             <h4 className="font-medium text-foreground mb-4">Categories</h4>
             <ul className="space-y-2">
@@ -56,7 +55,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact */}
+
           <div>
             <h4 className="font-medium text-foreground mb-4">Contact</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">

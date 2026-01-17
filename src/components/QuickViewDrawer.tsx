@@ -144,7 +144,6 @@ const QuickViewDrawer = ({
             </div>
           </div>
 
-          {/* Size Selection */}
           <div className="mb-6">
             <p className="text-sm font-medium text-foreground mb-3">Size</p>
             <div className="flex flex-wrap gap-2">

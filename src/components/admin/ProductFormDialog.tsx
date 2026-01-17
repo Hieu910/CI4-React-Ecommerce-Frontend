@@ -449,7 +449,6 @@ const ProductFormDialog = ({
           </div>
         </ScrollArea>
 
-        {/* Footer - Fixed at bottom */}
         <div className="flex justify-end gap-3 px-8 py-4 border-t bg-muted/30 flex-shrink-0">
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Cancel

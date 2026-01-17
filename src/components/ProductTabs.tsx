@@ -52,7 +52,7 @@ const ProductTabs = ({
 
   return (
     <div className="py-12">
-      {/* Tabs */}
+   
       <div className="flex items-center justify-center gap-4 mb-8">
         {tabs.map((tab) => (
           <button
@@ -69,9 +69,9 @@ const ProductTabs = ({
         ))}
       </div>
 
-      {/* Products Carousel */}
+  
       <div className="relative">
-        {/* Navigation Arrows */}
+   
         <button
           onClick={scrollLeft}
           className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-card shadow-md text-foreground hover:bg-secondary transition-colors"
@@ -85,7 +85,7 @@ const ProductTabs = ({
           <ChevronRight className="w-5 h-5" />
         </button>
 
-        {/* Products Container */}
+      
         <div
           ref={scrollContainerRef}
           className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth px-2 pb-4"
@@ -99,7 +99,6 @@ const ProductTabs = ({
         </div>
       </div>
 
-      {/* View All Button */}
       <div className="flex justify-center mt-8">
         <Button asChild variant="secondary" size="lg" className="rounded-xl">
           <Link to="/products">View All Products</Link>

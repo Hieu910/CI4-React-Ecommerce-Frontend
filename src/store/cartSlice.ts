@@ -1,18 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { getCart, saveCartItem, deleteCartItem } from "@/services/api";
-import { CartItemResponse, CartResponse } from "@/data/mockData";
-
-export interface CartItem {
-  cart_id: number;
-  product_id?: number;
-  variant_id: number;
-  quantity: number;
-  name: string;
-  image_url: string;
-  size: string;
-  color: string;
-  price: number;
-}
+import { CartItem, CartResponse } from "@/data/mockData";
 
 interface CartState {
   items: CartItem[];
@@ -35,14 +23,14 @@ export const fetchCart = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message || "Failed to fetch cart");
     }
-  }
+  },
 );
 
 export const addToCartAsync = createAsyncThunk(
   "cart/addToCart",
   async (
     payload: { variant_id: number; quantity: number },
-    { dispatch, rejectWithValue }
+    { dispatch, rejectWithValue },
   ) => {
     try {
       await saveCartItem(payload.variant_id, payload.quantity);
@@ -51,14 +39,14 @@ export const addToCartAsync = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message || "Failed to add to cart");
     }
-  }
+  },
 );
 
 export const updateQuantityAsync = createAsyncThunk(
   "cart/updateQuantity",
   async (
     payload: { variant_id: number; quantity: number },
-    { dispatch, rejectWithValue }
+    { dispatch, rejectWithValue },
   ) => {
     try {
       await saveCartItem(payload.variant_id, payload.quantity);
@@ -66,7 +54,7 @@ export const updateQuantityAsync = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message || "Failed to update quantity");
     }
-  }
+  },
 );
 
 export const removeFromCartAsync = createAsyncThunk(
@@ -79,7 +67,7 @@ export const removeFromCartAsync = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message || "Failed to remove from cart");
     }
-  }
+  },
 );
 
 const cartSlice = createSlice({
@@ -93,7 +81,7 @@ const cartSlice = createSlice({
 
     updateQuantityLocal: (
       state,
-      action: PayloadAction<{ cartId: number; quantity: number }>
+      action: PayloadAction<{ cartId: number; quantity: number }>,
     ) => {
       const { cartId, quantity } = action.payload;
       const item = state.items.find((item) => item.cart_id === cartId);
@@ -123,7 +111,7 @@ const cartSlice = createSlice({
             price: item.price,
           }));
           state.totalAmount = action.payload.total_amount;
-        }
+        },
       )
       .addCase(fetchCart.rejected, (state, action) => {
         state.isLoading = false;
@@ -136,13 +124,13 @@ const cartSlice = createSlice({
       .addCase(updateQuantityAsync.fulfilled, (state, action) => {
         const { variant_id, quantity } = action.payload;
         const cartItem = state.items.find(
-          (item) => item.variant_id === variant_id
+          (item) => item.variant_id === variant_id,
         );
         if (cartItem) {
           cartItem.quantity = quantity;
           state.totalAmount = state.items.reduce(
             (sum, item) => sum + item.price * item.quantity,
-            0
+            0,
           );
         }
       });

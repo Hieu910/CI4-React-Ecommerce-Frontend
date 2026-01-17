@@ -28,7 +28,6 @@ const CustomerReviews = ({ reviews }: CustomerReviewsProps) => {
       </h2>
 
       <div className="relative">
-        {/* Navigation Arrows */}
         <button
           onClick={scrollLeft}
           className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-card shadow-md text-foreground hover:bg-secondary transition-colors"
@@ -42,7 +41,6 @@ const CustomerReviews = ({ reviews }: CustomerReviewsProps) => {
           <ChevronRight className="w-5 h-5" />
         </button>
 
-        {/* Reviews Container */}
         <div
           ref={scrollContainerRef}
           className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth px-2 pb-4"

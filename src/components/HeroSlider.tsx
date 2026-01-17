@@ -11,7 +11,6 @@ interface HeroSliderProps {
 const HeroSlider = ({ slides }: HeroSliderProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Auto-slide every 3 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -36,7 +35,6 @@ const HeroSlider = ({ slides }: HeroSliderProps) => {
 
   return (
     <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden rounded-2xl">
-      {/* Slides */}
       {slides.map((slide, index) => (
         <div
           key={slide.id}
@@ -44,7 +42,6 @@ const HeroSlider = ({ slides }: HeroSliderProps) => {
             index === currentSlide ? "opacity-100" : "opacity-0"
           }`}
         >
-          {/* Background Image */}
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${slide.image})` }}
@@ -52,7 +49,6 @@ const HeroSlider = ({ slides }: HeroSliderProps) => {
             <div className="absolute inset-0 bg-foreground/40" />
           </div>
 
-          {/* Content - Centered */}
           <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
             <h1 className="text-4xl md:text-6xl font-bold text-card mb-4">
               {slide.title}
@@ -85,7 +81,6 @@ const HeroSlider = ({ slides }: HeroSliderProps) => {
         <ChevronRight className="w-6 h-6" />
       </button>
 
-      {/* Dots */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
         {slides.map((_, index) => (
           <button
