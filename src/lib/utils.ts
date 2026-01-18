@@ -6,8 +6,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function sleep(ms: number) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
 export const groupVariantsByColor = (
-  variants: Variant[]
+  variants: Variant[],
 ): { [key: string]: Variant[] } => {
   if (!variants || !Array.isArray(variants)) return {};
 
@@ -21,4 +25,17 @@ export const groupVariantsByColor = (
     acc[color].push(variant);
     return acc;
   }, {});
+};
+
+export const shouldRetry = (error: any): boolean => {
+  // Retry on timeout
+  if (error.code === "ECONNABORTED") return true;
+
+  // Retry on network errors
+  if (!error.response) return true;
+
+  // Retry on 5xx server errors
+  if (error.response?.status >= 500) return true;
+
+  return false;
 };

@@ -2,11 +2,15 @@ import axios from "axios";
 import { toast } from "sonner";
 import { store } from "@/store";
 import { login, logout } from "@/store/authSlice";
+import { sleep, shouldRetry } from "./utils";
 
 const API_URL = import.meta.env.VITE_API_URL;
+const MAX_RETRIES = 3;
+const RETRY_DELAY = 1000;
+
 const apiClient = axios.create({
   baseURL: API_URL,
-  timeout: 10000,
+  timeout: 30000,
   withCredentials: true,
 });
 
@@ -20,6 +24,11 @@ apiClient.interceptors.request.use((config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
+
+  if (!config.headers["X-Retry-Count"]) {
+    config.headers["X-Retry-Count"] = "0";
+  }
+
   return config;
 });
 
@@ -35,6 +44,7 @@ apiClient.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config;
+    const retryCount = parseInt(originalRequest.headers["X-Retry-Count"]);
 
     if (error.response?.status === 401 && !originalRequest._retry) {
       const skipUrls = ["/login", "/register", "/refresh"];
@@ -59,6 +69,13 @@ apiClient.interceptors.response.use(
 
     if (error.response?.status === 403) {
       window.location.href = "/forbidden";
+    }
+
+    if (shouldRetry(error) && retryCount < MAX_RETRIES) {
+      originalRequest.headers["X-Retry-Count"] = `${retryCount + 1}`;
+      const delay = RETRY_DELAY * Math.pow(2, retryCount);
+      await sleep(delay);
+      return apiClient(originalRequest);
     }
 
     if (!error.response || error.response.status >= 500) {

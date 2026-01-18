@@ -39,11 +39,16 @@ const Register = () => {
 
     try {
       setIsLoading(true);
-      const authData = await registerUser(name, email, password, confirmPassword);
+      const authData = await registerUser(
+        name,
+        email,
+        password,
+        confirmPassword,
+      );
       dispatch(login(authData));
       toast.success("Registration successful!");
       navigate("/");
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error.message || "Registration failed");
     } finally {
       setIsLoading(false);
