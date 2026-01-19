@@ -10,7 +10,7 @@ const RETRY_DELAY = 1000;
 
 const apiClient = axios.create({
   baseURL: API_URL,
-  timeout: 30000,
+  timeout: 10000,
   withCredentials: true,
 });
 
