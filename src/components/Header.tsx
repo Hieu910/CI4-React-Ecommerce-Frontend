@@ -29,7 +29,7 @@ const Header = () => {
   const { items: cartItems } = useAppSelector((state) => state.cart);
   const { categories, hasFetched } = useAppSelector((state) => state.category);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  console.log(user);
   useEffect(() => {
     const fetchData = async () => {
       if (!hasFetched) {

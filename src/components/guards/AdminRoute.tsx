@@ -6,7 +6,6 @@ import { Loader2 } from "lucide-react";
 const AdminRoute = () => {
   const { user, isLoading } = useSelector((state: RootState) => state.auth);
 
-  console.log(user);
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">

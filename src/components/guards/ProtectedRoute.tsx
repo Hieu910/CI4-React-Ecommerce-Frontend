@@ -5,7 +5,9 @@ import { Loader2 } from "lucide-react";
 
 const ProtectedRoute = () => {
   const location = useLocation();
-  const { isLoggedIn, isLoading } = useSelector((state: RootState) => state.auth);
+  const { isLoggedIn, isLoading } = useSelector(
+    (state: RootState) => state.auth,
+  );
 
   if (isLoading) {
     return (
