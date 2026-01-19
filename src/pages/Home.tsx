@@ -17,6 +17,7 @@ import {
   getBestSell,
   getFeaturedProducts,
 } from "@/services/api";
+import ServerWarning from "@/components/ServerWarning";
 
 const Home = () => {
   const [newProducts, setNewProducts] = useState<Product[]>([]);
@@ -25,7 +26,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(
-    null
+    null,
   );
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
 
@@ -112,7 +113,7 @@ const Home = () => {
         isOpen={isQuickViewOpen}
         onClose={handleCloseQuickView}
       />
-
+      <ServerWarning />
       <CompareFloatingWindow />
     </div>
   );
