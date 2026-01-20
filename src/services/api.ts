@@ -7,7 +7,7 @@ import {
 } from "@/data/mockData";
 
 export const getProducts = async (
-  params?: ProductListParams
+  params?: ProductListParams,
 ): Promise<ProductListResponse> => {
   return (await apiClient.get("/products", { params })) as ProductListResponse;
 };
@@ -17,7 +17,7 @@ export const getProductById = async <T = any>(id: number): Promise<T> => {
 };
 
 export const getProductsByTag = async <T = any>(
-  tag: "is_best_sell" | "is_new" | "is_featured"
+  tag: "is_best_sell" | "is_new" | "is_featured",
 ): Promise<T> => {
   return await apiClient.get("/products/tag", { params: { tag } });
 };
@@ -35,14 +35,14 @@ export const getFeaturedProducts = async <T = any>(): Promise<T> => {
 };
 
 export const getProductVariants = async <T = any>(
-  productId: number
+  productId: number,
 ): Promise<T> => {
   return (await apiClient.get(`/admin/products/variants/${productId}`)) as T;
 };
 
 export const getRelatedProducts = async <T = any>(
   productId: number,
-  limit: number = 4
+  limit: number = 4,
 ): Promise<T> => {
   return (await apiClient.get(`/products/${productId}/related`, {
     params: { limit },
@@ -50,14 +50,14 @@ export const getRelatedProducts = async <T = any>(
 };
 
 export const createProduct = async <T = any>(
-  productData: FormData
+  productData: FormData,
 ): Promise<T> => {
   return (await apiClient.post("/admin/products/create", productData)) as T;
 };
 
 export const updateProduct = async <T = any>(
   id: number,
-  productData: FormData
+  productData: FormData,
 ): Promise<T> => {
   return (await apiClient.post(`/admin/products/update/${id}`, productData, {
     headers: { "Content-Type": "multipart/form-data" },
@@ -82,7 +82,7 @@ export const updateUserProfile = async <T = any>(name: string): Promise<T> => {
 
 export const changeUserPassword = async <T = any>(
   old_password: string,
-  new_password: string
+  new_password: string,
 ): Promise<T> => {
   return (await apiClient.post("/user/change-password", {
     old_password,
@@ -92,7 +92,7 @@ export const changeUserPassword = async <T = any>(
 
 export const loginUser = async (
   email: string,
-  password: string
+  password: string,
 ): Promise<AuthResponse> => {
   return (await apiClient.post("/login", { email, password })) as AuthResponse;
 };
@@ -101,7 +101,7 @@ export const registerUser = async (
   name: string,
   email: string,
   password: string,
-  confirm_password: string
+  confirm_password: string,
 ): Promise<AuthResponse> => {
   return (await apiClient.post("/register", {
     name,
@@ -121,7 +121,7 @@ export const getCart = async (): Promise<CartResponse> => {
 
 export const saveCartItem = async (
   variant_id: number,
-  quantity: number
+  quantity: number,
 ): Promise<any> => {
   return await apiClient.post("/cart/save", {
     variant_id,
@@ -154,7 +154,7 @@ export const createOrder = async <T = any>(): Promise<T> => {
 
 export const updateOrderStatus = async <T = any>(
   id: number,
-  status: number
+  status: number,
 ): Promise<T> => {
   return (await apiClient.post(`/admin/orders/update-status/${id}`, {
     status,
@@ -175,13 +175,13 @@ export const getUserById = async <T = any>(id: number): Promise<T> => {
 
 export const updateUserRole = async <T = any>(
   id: number,
-  role: number
+  role: number,
 ): Promise<T> => {
   return (await apiClient.post(`/admin/users/update/${id}`, { role })) as T;
 };
 
 export const getDashboardStats = async <T = any>(): Promise<T> => {
-  return (await apiClient.get("/admin/dashboard")) as T;
+  return (await apiClient.get("/admin/dashboard-stats")) as T;
 };
 
 export const getRevenueChart = async <T = any>(): Promise<T> => {
